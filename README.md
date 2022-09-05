@@ -12,9 +12,11 @@ This project offers would-be Romeos and Juliets a secure place to compose and st
 ## Wireframes
 
 ![Login Page](./project_prep/images/login.png?raw=true "Login Page")
-![Compose A Letter](/project_prep/images/love-letter-compose.png?raw=true "Compose A Letter")
-![View Saved and Edit Letters](/project_prep/images/love-letter-edit.png?raw=true "View Saved and Edit Letters")
-![About Us](/project_prep/images/about-us.png?raw=true "About Us")
+![Compose A Letter](./project_prep/images/love-letter-compose.png?raw=true "Compose A Letter")
+![View Saved and Edit Letters](./project_prep/images/love-letter-edit.png?raw=true "View Saved and Edit Letters")
+![About Us](./project_prep/images/about-us.png?raw=true "About Us")
+[Trello Board for this project](https://trello.com/b/mJsJb1sX/love-letter-helper)
+
 
 ## User Stories
 
@@ -88,6 +90,6 @@ Ensure that the deleted letter is removed from the database and the page is re-r
 	Difficulty: Medium	
 
 
-![UML](/project_prep/images/uml.png?raw=true "UML")
-
+![UML](./project_prep/images/uml.png?raw=true "UML")
+![Schema and Constructors](./project_prep/images/scema_constructor.excalidraw.png?raw=true "Schema and Constructors")
 
