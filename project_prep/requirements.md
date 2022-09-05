@@ -80,7 +80,7 @@ The web app will allow users to edit their previously written love letters
 ## Functional Requirements
 
 
-1. A user can to log in
+1. A user can log in
 2. A user can write and submit love letters to get feedback
 3. A user can see their previously written love letters
 4. A user can edit their previously written love letters
@@ -93,21 +93,24 @@ The web app will allow users to edit their previously written love letters
 
 1. User logs in
 2. We use Auth0 authorize user
-3. Use unique user token to get the user's stored letters from the database (if any)
-4. Populate the web page in an `<Accordion>` with the letters from the database; store letter data in `state`
-5. When user clicks a previous letter display the letter in a `<Modal>`
-  - User can delete or edit:
+3. User is taken to a main page where they can start to write a letter.
+4. User has the option to save the new letter. 
+5. Use unique user token to get the user's stored letters from the database (if any)
+6. Populate the web page in an `<Accordion>` with the letters from the database; store letter data in `state`
+7. When user clicks a previous letter display the letter in a `<Modal>`
+    - User can delete or edit:
     - Delete: removes the letter data by `id` from state and database
     - Edit: update the letter by `id` and update database
-6. When a user `submits` a new love letter or submits an update to a love letter, send the letter to our server, then make an API call to get the letter scored, then save that score to the MongoAtlas database.
+8. When a user makes a request, send the letter (new or stored) to our server.
+9. Make an API call to get the letter scored.
+10. Save that score to the MongoAtlas database.
 
 
 ## Non-Functional Requirements
 
 
 **Usability**
-Our product will have clear and simple directions for each user, so they know how to enter, edit, and save love letters.
-The website will make it clear that that the functions are accessible. Colors will be accessible.
+Our product will have clear and simple directions for each user, so they know how to enter, edit, and save love letters. The website will will be friendly to screen readers. Colors will be accessible. We will run Lighthouse tests to confirm this.
 
 
 **Localization**
