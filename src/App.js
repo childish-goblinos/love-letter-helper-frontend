@@ -27,17 +27,17 @@ class App extends React.Component
               ? <LogoutButton />
               : <LoginButton />
           }
+          
           { // if authenticated, see the profile page
             // if not authenticated, see a message asking them to log in
             this.props.auth0.isAuthenticated
-            ? <Profile/>
-            : <h2>Please log in c:</h2>
+              ? <Profile />
+              : <h2>Please log in c:</h2>
           }
         </Container>
       </>
     );
   }
-
 }
 
 // note that this is different than what we're used to  
