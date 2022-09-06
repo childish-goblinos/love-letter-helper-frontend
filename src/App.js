@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap/Container';
+import Container from 'react-bootstrap/Container';
 
 // `withAuth0` is for `Class` components
 import { withAuth0 } from '@auth0/auth0-react';
@@ -7,13 +7,26 @@ import { withAuth0 } from '@auth0/auth0-react';
 // import buttons and such
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import Profile from './Profile';
+import Content from './Content';
 
 
 import './App.css';
 
 class App extends React.Component 
 {
+  constructor(props)
+  {
+    super(props)
+    this.state = {
+      userEmail: '',
+      userName: '',
+    }
+  }
+
+  handleUserIdentity = () =>
+  {
+
+  }
   render()
   {
     return (
@@ -27,11 +40,11 @@ class App extends React.Component
               ? <LogoutButton />
               : <LoginButton />
           }
-          
+
           { // if authenticated, see the profile page
             // if not authenticated, see a message asking them to log in
             this.props.auth0.isAuthenticated
-              ? <Profile />
+              ? <Content />
               : <h2>Please log in c:</h2>
           }
         </Container>
