@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
 
-Class App extends React.Component {
-
+class App extends React.Component 
+{
+  render()
+  {
+    return (
+      <>
+        <div className="App">
+          <p>Love letter FrontEnd</p>
+        </div>
+      </>
+    );
+  }
   
 }
 
-
-  return (
-    <div className="App">
-      <p>Loveletter FrontEnd</p>
-    </div>
-  );
-}
 
 export default App;
