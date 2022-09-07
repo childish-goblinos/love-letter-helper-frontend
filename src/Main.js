@@ -152,30 +152,9 @@ class Main extends React.Component
         console.log('This letter wasn\'t saved. ', e.response)
       }
     }
-
   }
 
-
-  /*
-  handleEmail = () =>
-  {
-    try
-    {
-      let emailObj =
-      {
-        "email": "jacko7557@gmail.com",
-        // "email": this.props.auth0.user.email,
-      };
-      console.log('handle email object', emailObj);
-
-      return emailObj;
-    }
-    catch (err)
-    {
-      console.log(`Problem getting email: `, err.message);
-    }
-  }
-  */
+  
 
   // letters will load as soon as this page is loaded
   // the page will only be loaded if they get through auth0

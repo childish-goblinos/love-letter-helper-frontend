@@ -32,7 +32,6 @@ class AddForm extends React.Component {
           {/* TO DO - ADD A CHARACTER COUNTER */}
         </Form.Label>
         <Button type="submit">Add</Button>
-        
       </Form>
       </> 
       )

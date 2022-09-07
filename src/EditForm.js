@@ -3,11 +3,15 @@ import { Button, Form } from 'react-bootstrap';
 
 
 
-class EditForm extends React.Component {
-  render() {
-    return (
+class EditForm extends React.Component
+{
+  confirmDelete = () =>
+  {
     
-
+  }
+  render()
+  {
+    return (
       <Form
       // onSubmit={this.props.handleEditSubmit}
       >
@@ -32,8 +36,9 @@ class EditForm extends React.Component {
             default="[this is where the letter body is called]"
           />
         </Form.Label>
-        {/* TO DO - ADD A CHARACTER COUNTER */}
+        {/* TO DO - ADD A CHARACTER COUNTER */ }
         <Button type="submit">Edit</Button>
+        <Button type="submit">Delete</Button>
       </Form>
     )
   }
