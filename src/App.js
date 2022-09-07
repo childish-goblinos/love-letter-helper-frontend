@@ -30,17 +30,13 @@ import './App.css';
 
 
 
-class App extends React.Component {
-
-
-
-
-  render() {
-
-
+class App extends React.Component
+{
+  render()
+  {
     return (
       <>
-         {/* <Router>
+        {/* <Router>
           <Header />
           <Routes>
             <Route
@@ -56,12 +52,12 @@ class App extends React.Component {
           </Routes>
           <Footer />
         </Router> */}
-          
-          {/* Original App testing routes  */}
 
-          <Header />
+        {/* Original App testing routes  */ }
 
-          <Container className="App">
+        <Header />
+
+        <Container className="App">
           { // if authenticated, see the `LogoutButton`
             // if not authenticated, see the `LoginButton`
             this.props.auth0.isAuthenticated
@@ -73,16 +69,16 @@ class App extends React.Component {
             // if not authenticated, see a message asking them to log in
             this.props.auth0.isAuthenticated
               ? <>
-                  <Content />
-                  <Main />
-                </>
+                <Content />
+                <Main />
+              </>
               : <h2>Please log in c:</h2>
           }
-          </Container>
-          
-          <Footer />
-        </>
-        )
+        </Container>
+
+        <Footer />
+      </>
+    )
 
   }
 }
