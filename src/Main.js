@@ -7,6 +7,9 @@ import EditForm from './EditForm';
 // this allows us to use the `user` object in props
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
+import { Accordion } from 'react-bootstrap';
+import LetterAccordion from './LetterAccordion';
+import LetterModal from './LetterModal';
 
 let SERVER = process.env.REACT_APP_SERVER;
 
@@ -19,6 +22,8 @@ class Main extends React.Component
       letters: [],
       letter: {},
       letterBody: '',
+      showModal: false,
+      modalId: ''
     }
   }
   getLetters = async () =>
@@ -41,7 +46,7 @@ class Main extends React.Component
         // config to do a `get` request from our server using the user's email
         const config = {
           method: 'get',
-          baseURL: `${SERVER}`,
+          baseURL: `${ SERVER }`,
           url: '/letters',
           headers: {
             "email": `${ this.props.auth0.user.email }`,
@@ -58,8 +63,27 @@ class Main extends React.Component
 
         // set the letter data from our mongo database into state
         // which'll re-render the page
+
+        let sortedLetters = letterData.data.sort((a, b) => 
+        {
+          if (a.recipient.charAt(0).toLowerCase() > b.recipient.charAt(0).toLowerCase())
+          {
+            return 1;
+          }
+
+          else if (a.recipient.charAt(0).toLowerCase() < b.recipient.charAt(0).toLowerCase())
+          {
+            return -1;
+          }
+          else
+          {
+            return 0;
+          }
+
+        });
+
         this.setState({
-          letters: letterData.data,
+          letters: sortedLetters,
         })
       }
       catch (err)
@@ -73,6 +97,13 @@ class Main extends React.Component
       // TODO: change the render to display something to let the user know they aren't logged in and can't see letters
       console.log('please log in');
     }
+  }
+  handleModal = (id) =>
+  {
+    this.setState({
+      showModal: !this.state.showModal,
+      modalId: id
+    })
   }
   //make a book object
   handleAddSubmit = (e) =>
@@ -97,7 +128,7 @@ class Main extends React.Component
   handleCharCount = e =>
   {
     e.preventDefault();
-    console.log('letter body in handle char: ', e.target.value);
+    // console.log('letter body in handle char: ', e.target.value);
     this.setState({
       letterBody: e.target.value,
     });
@@ -124,7 +155,7 @@ class Main extends React.Component
 
         const config = {
           method: 'post',
-          baseURL: `${SERVER}`,
+          baseURL: `${ SERVER }`,
           url: '/letters',
           headers: {
             // pass token into the headers
@@ -154,7 +185,7 @@ class Main extends React.Component
     }
   }
 
-  
+
 
   // letters will load as soon as this page is loaded
   // the page will only be loaded if they get through auth0
@@ -173,6 +204,19 @@ class Main extends React.Component
           handleCharCount={ this.handleCharCount }
         />
         <EditForm />
+        {
+          this.state.letters.length
+            ? <>
+              <LetterAccordion
+                letters={ this.state.letters }
+                handleModal={ this.handleModal} />
+              <LetterModal show={this.state.showModal} handleModal={this.handleModal}
+              letters={this.state.letters}
+              modalId={this.state.modalId}/>
+            </>
+            : <p>Write your beloved a letter!</p>
+        }
+
       </>
     );
   }
