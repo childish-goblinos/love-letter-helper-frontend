@@ -89,7 +89,7 @@ Ensure that the user can access the saved letter to delete.
 Ensure that the user is given a warning before the letter is deleted.
 Ensure that the user can choose not to delete the letter
 Ensure that the deleted letter is removed from the database and the page is re-rendered without that letter.
- Difficulty: Medium 
+ Difficulty: Medium
 
 ![UML](./project_prep/images/uml.png?raw=true "UML")
 ![Schema and Constructors](./project_prep/images/scema_constructor.excalidraw.png?raw=true "Schema and Constructors")

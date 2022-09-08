@@ -5,9 +5,10 @@ import { Button, Form } from 'react-bootstrap';
 
 class EditForm extends React.Component
 {
+  // function to ask user if they `really want to delete?` their letter
   confirmDelete = () =>
   {
-    
+
   }
   render()
   {

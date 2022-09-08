@@ -6,13 +6,13 @@ export default class LetterModal extends React.Component
 {
   render()
   {
-    let variable = this.props.letters.filter(r=>r._id === this.props.modalId)[0];
+    let variable = this.props.letters.filter(r => r._id === this.props.modalId)[0];
     return (
       <Modal show={ this.props.show } onHide={ this.props.handleModal }>
         <Modal.Header closeButton>
-          <Modal.Title>{variable?.title}</Modal.Title>
+          <Modal.Title>{ variable?.title }</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{variable?.letterBody}</Modal.Body>
+        <Modal.Body>{ variable?.letterBody }</Modal.Body>
         <Modal.Footer>
           {/* <Button variant="secondary" onClick={ handleClose }>
             Close

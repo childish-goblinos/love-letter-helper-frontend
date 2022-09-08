@@ -3,8 +3,6 @@ import React from "react";
 // withAuth0, because this is a Class-based component
 import { withAuth0 } from "@auth0/auth0-react";
 
-// because 
-import axios from "axios";
 
 
 class Content extends React.Component

@@ -32,11 +32,11 @@ import './App.css';
 
 class App extends React.Component
 {
-    render()
-    {
-      return (
-        <>
-          {/* <Router>
+  render()
+  {
+    return (
+      <>
+        {/* <Router>
           <Header />
           <Routes>
             <Route
@@ -53,34 +53,34 @@ class App extends React.Component
           <Footer />
         </Router> */}
 
-          {/* Original App testing routes  */ }
+        {/* Original App testing routes  */ }
 
-          <Header />
+        <Header />
 
-          <Container className="App">
-            { // if authenticated, see the `LogoutButton`
-              // if not authenticated, see the `LoginButton`
-              this.props.auth0.isAuthenticated
-                ? <LogoutButton />
-                : <LoginButton />
-            }
+        <Container className="App">
+          { // if authenticated, see the `LogoutButton`
+            // if not authenticated, see the `LoginButton`
+            this.props.auth0.isAuthenticated
+              ? <LogoutButton />
+              : <LoginButton />
+          }
 
-            { // if authenticated, see the Content.js and Main.js
-              // if not authenticated, see a message asking them to log in
-              this.props.auth0.isAuthenticated
-                ? <>
-                  <Content />
-                  <Main />
-                </>
-                : <h2>Please log in c:</h2>
-            }
-          </Container>
+          { // if authenticated, see the Content.js and Main.js
+            // if not authenticated, see a message asking them to log in
+            this.props.auth0.isAuthenticated
+              ? <>
+                <Content />
+                <Main />
+              </>
+              : <h2>Please log in c:</h2>
+          }
+        </Container>
 
-          <Footer />
-        </>
-      )
-    }
+        <Footer />
+      </>
+    )
   }
+}
 
 // note that this is different than what we're used to  
 // this line allows us to use `auth0` as props 

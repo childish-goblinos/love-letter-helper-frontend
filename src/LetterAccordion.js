@@ -34,7 +34,7 @@ class LetterAccordion extends React.Component
           if (letter.recipient === r)
           {
             console.log(letter._id);
-            return <Accordion.Body key={ letter._id }>{ letter.title }<Button onClick={()=>this.props.handleModal(letter._id)}>Open</Button><Button>Delete</Button></Accordion.Body>;
+            return <Accordion.Body key={ letter._id }>{ letter.title }<Button onClick={ () => this.props.handleModal(letter._id) }>Open</Button><Button>Delete</Button></Accordion.Body>;
           }
         })
         }
