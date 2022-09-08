@@ -2,8 +2,10 @@ import React from 'react';
 //import { Navbar, NavItem } from 'react-bootstrap';
 //import { Link } from "react-router-dom";
 
-class Header extends React.Component {
-  render() {
+class Header extends React.Component
+{
+  render()
+  {
     return (
       <p>Header Proof of Life</p>
       // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

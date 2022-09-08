@@ -7,18 +7,18 @@ class AddForm extends React.Component {
   render() {
     return (<>
     <p>uhg</p>
-       <Form>
+       <Form onSubmit={this.props.handleAddSubmit}>
         <Form.Label >Your Recipient
           <Form.Control
               type="text"
-              name="add-recipient"
+              name="addRecipient"
               placeholder="Oh My Most Beloved!"
             />
        </Form.Label>
         <Form.Label>Give Your Letter a Title
           <Form.Control
             type="text"
-            name="add-title"
+            name="addTitle"
             placeholder="An Outpouring of My Fullsome Emotion For Thee"
           />
         </Form.Label>
@@ -27,11 +27,11 @@ class AddForm extends React.Component {
             type="text"
             name="add-letter"
             placeholder="I am full of such forbidden desires for thy most comely self. Please grace me with your affections, lest I die."
+            onInput={this.props.handleCharCount}
           />
           {/* TO DO - ADD A CHARACTER COUNTER */}
         </Form.Label>
-        <Button type="submit">Edit</Button>
-        
+        <Button type="submit">Add</Button>
       </Form>
       </> 
       )
