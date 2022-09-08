@@ -14,12 +14,13 @@ export default class LetterModal extends React.Component
         </Modal.Header>
         <Modal.Body>{ variable?.letterBody }</Modal.Body>
         <Modal.Footer>
+        <Button variant="primary" onClick={() => this.props.showEditForm(variable) }>
+            Edit Letter
+          </Button>
            <Button variant="secondary" onClick={() => this.props.confirmDelete(variable?._id) }>
             Delete This Letter
           </Button>
-         {/* <Button variant="primary" onClick={ handleClose }>
-            Edit Letter
-          </Button> */}
+        
         </Modal.Footer>
       </Modal>
     )

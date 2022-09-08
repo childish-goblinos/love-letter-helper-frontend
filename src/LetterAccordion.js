@@ -24,7 +24,7 @@ class LetterAccordion extends React.Component
   render()
   {
     let arr = this.getRecipientNames();
-    console.log("this test", arr);
+
     let newArr = arr.map((r, idx) =>
     {
       return <Accordion.Item key={ idx } eventKey={ idx }>
@@ -33,7 +33,7 @@ class LetterAccordion extends React.Component
         {
           if (letter.recipient === r)
           {
-            console.log(letter._id);
+            //console.log(letter._id);
             return <Accordion.Body key={ letter._id }>{ letter.title }<Button onClick={ () => this.props.handleModal(letter._id) }>Open</Button>
             <Button onClick={() => this.props.confirmDelete(letter?._id)} >Delete</Button></Accordion.Body>;
           }
@@ -50,7 +50,7 @@ class LetterAccordion extends React.Component
     });
     */
     this.getRecipientNames();
-    console.log('letter array in letter accordion: ', this.props.letters);
+    //console.log('letter array in letter accordion: ', this.props.letters);
     return (
       <>
         <Accordion>

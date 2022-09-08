@@ -7,7 +7,7 @@ import EditForm from './EditForm';
 // this allows us to use the `user` object in props
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
-import { Accordion } from 'react-bootstrap';
+//import { Accordion } from 'react-bootstrap';
 import LetterAccordion from './LetterAccordion';
 import LetterModal from './LetterModal';
 
@@ -35,7 +35,7 @@ class Main extends React.Component {
         // this is the raw token
         // note the double underscore __ in .__raw
         const jwt = res.__raw;
-        // console.log('jwt: ', jwt)
+        // //console.log('jwt: ', jwt)
 
 
         // config to do a `get` request from our server using the user's email
@@ -50,11 +50,11 @@ class Main extends React.Component {
             "Authorization": `Bearer ${jwt}`
           }
         };
-        // console.log('config: ', config);
+        // //console.log('config: ', config);
         let letterData = await axios(config);
 
         // 
-        console.log(letterData.data);
+        //console.log(letterData.data);
 
         // set the letter data from our mongo database into state
         // which'll re-render the page
@@ -76,15 +76,16 @@ class Main extends React.Component {
         this.setState({
           letters: sortedLetters,
         })
+        console.log(sortedLetters);
       }
       catch (err) {
-        console.log(`Problem getting letters for ${this.props.auth0.user.name}: `, err.message);
+        //console.log(`Problem getting letters for ${this.props.auth0.user.name}: `, err.message);
       }
     }
     else {
       // display a message asking users to log in
       // TODO: change the render to display something to let the user know they aren't logged in and can't see letters
-      console.log('please log in');
+      //console.log('please log in');
     }
   }
   handleModal = (id) => {
@@ -106,15 +107,15 @@ class Main extends React.Component {
       //score: this.state.scoreText
     }
 
-    console.log('letter: ', letter);
+    //console.log('letter: ', letter);
 
     this.addLetter(letter);
-    //[RE - RENDER ACCORDIAN ?]
+
   }
 
   handleCharCount = e => {
     e.preventDefault();
-    // console.log('letter body in handle char: ', e.target.value);
+    // //console.log('letter body in handle char: ', e.target.value);
     this.setState({
       letterBody: e.target.value,
     });
@@ -133,7 +134,7 @@ class Main extends React.Component {
         // this is the raw token
         // note the double underscore __ in .__raw
         const jwt = res.__raw;
-        // console.log('jwt: ', jwt)
+        // //console.log('jwt: ', jwt)
 
 
         const config = {
@@ -148,12 +149,12 @@ class Main extends React.Component {
         }
 
         // log to see what the config file looks like
-        // console.log('add letter config: ', config);
+        // //console.log('add letter config: ', config);
 
         let createdLetter = await axios(config);
 
         // log the letter that axios returns to us
-        console.log('createdLetter: ', createdLetter.data);
+        //console.log('createdLetter: ', createdLetter.data);
 
 
         // use spread operator to make a deep copy of letters array in state, and concatenate the createdLetter.data to the end
@@ -162,7 +163,7 @@ class Main extends React.Component {
         });
       }
       catch (e) {
-        console.log('This letter wasn\'t saved. ', e.response)
+        //console.log('This letter wasn\'t saved. ', e.response)
       }
     }
   }
@@ -186,7 +187,7 @@ class Main extends React.Component {
         // this is the raw token
         // note the double underscore __ in .__raw
         const jwt = res.__raw;
-        // console.log('jwt: ', jwt)
+        // //console.log('jwt: ', jwt)
 
 
         // config to do a `DELETE` request from our server using the user's email
@@ -201,12 +202,12 @@ class Main extends React.Component {
         }
 
         // log to see what the config file looks like
-        // console.log('add letter config: ', config);
+        // //console.log('add letter config: ', config);
         await axios(config);
 
         let updatedLetters = this.state.letters.filter(letter => letter._id !== id);
 
-        console.log(updatedLetters);
+        //console.log(updatedLetters);
 
         // set the updatedLetters array to state
         this.setState({
@@ -215,9 +216,32 @@ class Main extends React.Component {
         });
       }
       catch (err) {
-        console.log('This letter wasn\'t deleted. ', err.response);
+        //console.log('This letter wasn\'t deleted. ', err.response);
       }
     }
+  }
+  showEditForm = letter => {
+    //console.log('Letter in Edit Handler: ', letter);
+    this.setState({
+      displayEdit: true,
+      letter: letter,
+      showModal: false,
+    })
+  }
+  handleEditSubmit = e => {
+    e.preventDefault();
+    let letter = {
+      title: e.target.title.value,
+      recipient: e.target.recipient.value,
+      letterBody: e.target.letterBody.value,
+      // email: [CALLED FROM AUTH0 SECRET STATE]
+      email: this.props.auth0.user.email,
+      //score: this.state.scoreText
+      _id: this.state.letter._id,
+      __v: this.state.letter.__v
+    }
+    console.log('handleEditSubmit letter:', letter)
+    this.updateLetters(letter)
   }
 
   updateLetters = async updatedLetter => {
@@ -230,7 +254,7 @@ class Main extends React.Component {
         // this is the raw token
         // note the double underscore __ in .__raw
         const jwt = res.__raw;
-        // console.log('jwt: ', jwt)
+        console.log('jwt: ', jwt)
 
 
         // config to do a `PUT` request from our server using the user's email
@@ -262,10 +286,11 @@ class Main extends React.Component {
 
         this.setState({
           letters: updatedLetterArray,
+          displayEdit: false,
         })
       }
       catch (err) {
-        console.log('could not delete this letter: ', err.response.data);
+        //console.log('could not delete this letter: ', err.response.data);
       }
     }
   }
@@ -284,21 +309,23 @@ class Main extends React.Component {
           handleAddSubmit={this.handleAddSubmit}
           handleCharCount={this.handleCharCount}
         />
-        <EditForm 
-        
-        confirmDelete={this.confirmDelete}/>
+        <EditForm
+          letter={this.state.letter}
+          confirmDelete={this.confirmDelete}
+          handleEditSubmit={this.handleEditSubmit} />
         {
           this.state.letters.length
             ? <>
               <LetterAccordion
                 letters={this.state.letters}
                 handleModal={this.handleModal}
-                confirmDelete={this.confirmDelete} 
-                />
+                confirmDelete={this.confirmDelete}
+              />
               <LetterModal show={this.state.showModal} handleModal={this.handleModal}
                 letters={this.state.letters}
                 modalId={this.state.modalId}
                 confirmDelete={this.confirmDelete}
+                showEditForm={this.showEditForm}
               />
             </>
             : <p>Write your beloved a letter!</p>
