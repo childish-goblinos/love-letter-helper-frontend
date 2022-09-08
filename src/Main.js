@@ -13,10 +13,8 @@ import LetterModal from './LetterModal';
 
 let SERVER = process.env.REACT_APP_SERVER;
 
-class Main extends React.Component
-{
-  constructor(props)
-  {
+class Main extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       letters: [],
@@ -26,13 +24,10 @@ class Main extends React.Component
       modalId: ''
     }
   }
-  getLetters = async () =>
-  {
+  getLetters = async () => {
     // if the user is authenticated, they can get letters
-    if (this.props.auth0.isAuthenticated)
-    {
-      try
-      {
+    if (this.props.auth0.isAuthenticated) {
+      try {
         // generate a token with auth0
         // we'll use it to make a secure request with to our server
         const res = await this.props.auth0.getIdTokenClaims();
@@ -46,13 +41,13 @@ class Main extends React.Component
         // config to do a `get` request from our server using the user's email
         const config = {
           method: 'get',
-          baseURL: `${ SERVER }`,
+          baseURL: `${SERVER}`,
           url: '/letters',
           headers: {
-            "email": `${ this.props.auth0.user.email }`,
+            "email": `${this.props.auth0.user.email}`,
 
             // pass token into the headers
-            "Authorization": `Bearer ${ jwt }`
+            "Authorization": `Bearer ${jwt}`
           }
         };
         // console.log('config: ', config);
@@ -64,19 +59,15 @@ class Main extends React.Component
         // set the letter data from our mongo database into state
         // which'll re-render the page
 
-        let sortedLetters = letterData.data.sort((a, b) => 
-        {
-          if (a.recipient.charAt(0).toLowerCase() > b.recipient.charAt(0).toLowerCase())
-          {
+        let sortedLetters = letterData.data.sort((a, b) => {
+          if (a.recipient.charAt(0).toLowerCase() > b.recipient.charAt(0).toLowerCase()) {
             return 1;
           }
 
-          else if (a.recipient.charAt(0).toLowerCase() < b.recipient.charAt(0).toLowerCase())
-          {
+          else if (a.recipient.charAt(0).toLowerCase() < b.recipient.charAt(0).toLowerCase()) {
             return -1;
           }
-          else
-          {
+          else {
             return 0;
           }
 
@@ -86,28 +77,24 @@ class Main extends React.Component
           letters: sortedLetters,
         })
       }
-      catch (err)
-      {
-        console.log(`Problem getting letters for ${ this.props.auth0.user.name }: `, err.message);
+      catch (err) {
+        console.log(`Problem getting letters for ${this.props.auth0.user.name}: `, err.message);
       }
     }
-    else
-    {
+    else {
       // display a message asking users to log in
       // TODO: change the render to display something to let the user know they aren't logged in and can't see letters
       console.log('please log in');
     }
   }
-  handleModal = (id) =>
-  {
+  handleModal = (id) => {
     this.setState({
       showModal: !this.state.showModal,
       modalId: id
     })
   }
   //make a letter object
-  handleAddSubmit = (e) =>
-  {
+  handleAddSubmit = (e) => {
     e.preventDefault();
     let letter = {
       title: e.target.addTitle.value,
@@ -125,8 +112,7 @@ class Main extends React.Component
     //[RE - RENDER ACCORDIAN ?]
   }
 
-  handleCharCount = e =>
-  {
+  handleCharCount = e => {
     e.preventDefault();
     // console.log('letter body in handle char: ', e.target.value);
     this.setState({
@@ -137,12 +123,9 @@ class Main extends React.Component
 
   //THIS IS THE FUNCTION TO CREATE THE LETTERS
 
-  addLetter = async (letter) =>
-  {
-    if (this.props.auth0.isAuthenticated)
-    {
-      try
-      {
+  addLetter = async (letter) => {
+    if (this.props.auth0.isAuthenticated) {
+      try {
         // generate a token with auth0
         // we'll use it to make a secure request with to our server
         const res = await this.props.auth0.getIdTokenClaims();
@@ -155,11 +138,11 @@ class Main extends React.Component
 
         const config = {
           method: 'post',
-          baseURL: `${ SERVER }`,
+          baseURL: `${SERVER}`,
           url: '/letters',
           headers: {
             // pass token into the headers
-            "Authorization": `Bearer ${ jwt }`
+            "Authorization": `Bearer ${jwt}`
           },
           data: letter,
         }
@@ -178,19 +161,24 @@ class Main extends React.Component
           letters: [...this.state.letters, createdLetter.data],
         });
       }
-      catch (e)
-      {
+      catch (e) {
         console.log('This letter wasn\'t saved. ', e.response)
       }
     }
   }
 
-  deleteLetter = async (id) =>
-  {
-    if (this.props.auth0.isAuthenticated)
-    {
-      try
-      {
+  // function to ask user if they `really want to delete?` their letter
+  confirmDelete = (id) => {
+    let yesDelete = prompt(`${this.props.auth0.user.name}, Are you sure you want to delete this letter?`).toLowerCase();
+
+    if (yesDelete === 'yes' || yesDelete === 'y') {
+      this.deleteLetter(id);
+    }
+  }
+
+  deleteLetter = async (id) => {
+    if (this.props.auth0.isAuthenticated) {
+      try {
         // generate a token with auth0
         // we'll use it to make a secure request with to our server
         const res = await this.props.auth0.getIdTokenClaims();
@@ -204,11 +192,11 @@ class Main extends React.Component
         // config to do a `DELETE` request from our server using the user's email
         const config = {
           method: 'delete',
-          baseURL: `${ SERVER }`,
-          url: '/letters/'`${ id }`,
+          baseURL: `${SERVER}`,
+          url: `/letters/${id}`,
           headers: {
             // pass token into the headers
-            "Authorization": `Bearer ${ jwt }`
+            "Authorization": `Bearer ${jwt}`
           },
         }
 
@@ -223,21 +211,18 @@ class Main extends React.Component
         // set the updatedLetters array to state
         this.setState({
           letters: updatedLetters,
+          showModal: false,
         });
       }
-      catch (err)
-      {
+      catch (err) {
         console.log('This letter wasn\'t deleted. ', err.response);
       }
     }
   }
 
-  updateLetters = async updatedLetter =>
-  {
-    if (this.props.auth0.isAuthenticated)
-    {
-      try
-      {
+  updateLetters = async updatedLetter => {
+    if (this.props.auth0.isAuthenticated) {
+      try {
         // generate a token with auth0
         // we'll use it to make a secure request with to our server
         const res = await this.props.auth0.getIdTokenClaims();
@@ -251,11 +236,11 @@ class Main extends React.Component
         // config to do a `PUT` request from our server using the user's email
         const config = {
           method: 'put',
-          baseURL: `${ SERVER }`,
-          url: `/letters/${ updatedLetter._id }`,
+          baseURL: `${SERVER}`,
+          url: `/letters/${updatedLetter._id}`,
           headers: {
             // pass token into the headers
-            "Authorization": `Bearer ${ jwt }`
+            "Authorization": `Bearer ${jwt}`
           },
           data: updatedLetter,
 
@@ -266,8 +251,7 @@ class Main extends React.Component
 
         // update state, so that it can re-render with updatedLetters info
 
-        let updatedLetterArray = this.state.letters.map(existingLetter => 
-        {
+        let updatedLetterArray = this.state.letters.map(existingLetter => {
           // if the `._id` matches the letter we want to update:
           // replace that element with the updatedLetterFromDB letter object
 
@@ -280,8 +264,7 @@ class Main extends React.Component
           letters: updatedLetterArray,
         })
       }
-      catch (err)
-      {
+      catch (err) {
         console.log('could not delete this letter: ', err.response.data);
       }
     }
@@ -289,30 +272,34 @@ class Main extends React.Component
 
   // letters will load as soon as this page is loaded
   // the page will only be loaded if they get through auth0
-  componentDidMount()
-  {
+  componentDidMount() {
     this.getLetters();
   }
-  render()
-  {
+  render() {
 
     return (
       <>
         <p>Proof of Life</p>
         <AddForm
-          handleAddSubmit={ this.handleAddSubmit }
-          handleCharCount={ this.handleCharCount }
+          handleAddSubmit={this.handleAddSubmit}
+          handleCharCount={this.handleCharCount}
         />
-        <EditForm />
+        <EditForm 
+        
+        confirmDelete={this.confirmDelete}/>
         {
           this.state.letters.length
             ? <>
               <LetterAccordion
-                letters={ this.state.letters }
-                handleModal={ this.handleModal } />
-              <LetterModal show={ this.state.showModal } handleModal={ this.handleModal }
-                letters={ this.state.letters }
-                modalId={ this.state.modalId } />
+                letters={this.state.letters}
+                handleModal={this.handleModal}
+                confirmDelete={this.confirmDelete} 
+                />
+              <LetterModal show={this.state.showModal} handleModal={this.handleModal}
+                letters={this.state.letters}
+                modalId={this.state.modalId}
+                confirmDelete={this.confirmDelete}
+              />
             </>
             : <p>Write your beloved a letter!</p>
         }

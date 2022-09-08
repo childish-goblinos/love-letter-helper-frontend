@@ -1,6 +1,6 @@
 import React from "react"
-import { Modal } from "react-bootstrap"
-// import Button from "react-bootstrap";
+import {Button, Modal } from "react-bootstrap"
+//import Button from "react-bootstrap";
 
 export default class LetterModal extends React.Component
 {
@@ -14,11 +14,11 @@ export default class LetterModal extends React.Component
         </Modal.Header>
         <Modal.Body>{ variable?.letterBody }</Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={ handleClose }>
-            Close
+           <Button variant="secondary" onClick={() => this.props.confirmDelete(variable?._id) }>
+            Delete This Letter
           </Button>
-          <Button variant="primary" onClick={ handleClose }>
-            Save Changes
+         {/* <Button variant="primary" onClick={ handleClose }>
+            Edit Letter
           </Button> */}
         </Modal.Footer>
       </Modal>
