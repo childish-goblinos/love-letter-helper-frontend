@@ -24,10 +24,11 @@ class AddForm extends React.Component {
         </Form.Label>
         <Form.Label>Share Your Feelings Freely
           <Form.Control
-            type="text"
+            type="textarea"
             name="add-letter"
             placeholder="I am full of such forbidden desires for thy most comely self. Please grace me with your affections, lest I die."
             onInput={this.props.handleCharCount}
+            maxLength={2000}
           />
           {/* TO DO - ADD A CHARACTER COUNTER */}
         </Form.Label>
