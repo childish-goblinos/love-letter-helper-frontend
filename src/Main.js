@@ -105,7 +105,7 @@ class Main extends React.Component
       modalId: id
     })
   }
-  //make a book object
+  //make a letter object
   handleAddSubmit = (e) =>
   {
     e.preventDefault();
@@ -185,7 +185,107 @@ class Main extends React.Component
     }
   }
 
+  deleteLetter = async (id) =>
+  {
+    if (this.props.auth0.isAuthenticated)
+    {
+      try
+      {
+        // generate a token with auth0
+        // we'll use it to make a secure request with to our server
+        const res = await this.props.auth0.getIdTokenClaims();
 
+        // this is the raw token
+        // note the double underscore __ in .__raw
+        const jwt = res.__raw;
+        // console.log('jwt: ', jwt)
+
+
+        // config to do a `DELETE` request from our server using the user's email
+        const config = {
+          method: 'delete',
+          baseURL: `${ SERVER }`,
+          url: '/letters/'`${ id }`,
+          headers: {
+            // pass token into the headers
+            "Authorization": `Bearer ${ jwt }`
+          },
+        }
+
+        // log to see what the config file looks like
+        // console.log('add letter config: ', config);
+        await axios(config);
+
+        let updatedLetters = this.state.letters.filter(letter => letter._id !== id);
+
+        console.log(updatedLetters);
+
+        // set the updatedLetters array to state
+        this.setState({
+          letters: updatedLetters,
+        });
+      }
+      catch (err)
+      {
+        console.log('This letter wasn\'t deleted. ', err.response);
+      }
+    }
+  }
+
+  updateLetters = async updatedLetter =>
+  {
+    if (this.props.auth0.isAuthenticated)
+    {
+      try
+      {
+        // generate a token with auth0
+        // we'll use it to make a secure request with to our server
+        const res = await this.props.auth0.getIdTokenClaims();
+
+        // this is the raw token
+        // note the double underscore __ in .__raw
+        const jwt = res.__raw;
+        // console.log('jwt: ', jwt)
+
+
+        // config to do a `PUT` request from our server using the user's email
+        const config = {
+          method: 'put',
+          baseURL: `${ SERVER }`,
+          url: `/letters/${ updatedLetter._id }`,
+          headers: {
+            // pass token into the headers
+            "Authorization": `Bearer ${ jwt }`
+          },
+          data: updatedLetter,
+
+
+        }
+        // get the updatedLetter from the database
+        let updatedLetterFromDB = await axios(config);
+
+        // update state, so that it can re-render with updatedLetters info
+
+        let updatedLetterArray = this.state.letters.map(existingLetter => 
+        {
+          // if the `._id` matches the letter we want to update:
+          // replace that element with the updatedLetterFromDB letter object
+
+          return existingLetter._id === updatedLetter._id
+            ? updatedLetterFromDB.data
+            : existingLetter;
+        });
+
+        this.setState({
+          letters: updatedLetterArray,
+        })
+      }
+      catch (err)
+      {
+        console.log('could not delete this letter: ', err.response.data);
+      }
+    }
+  }
 
   // letters will load as soon as this page is loaded
   // the page will only be loaded if they get through auth0
@@ -209,10 +309,10 @@ class Main extends React.Component
             ? <>
               <LetterAccordion
                 letters={ this.state.letters }
-                handleModal={ this.handleModal} />
-              <LetterModal show={this.state.showModal} handleModal={this.handleModal}
-              letters={this.state.letters}
-              modalId={this.state.modalId}/>
+                handleModal={ this.handleModal } />
+              <LetterModal show={ this.state.showModal } handleModal={ this.handleModal }
+                letters={ this.state.letters }
+                modalId={ this.state.modalId } />
             </>
             : <p>Write your beloved a letter!</p>
         }

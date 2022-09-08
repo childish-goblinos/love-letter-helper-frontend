@@ -43,7 +43,7 @@ class LetterAccordion extends React.Component
 
     //let getRecipients = this.props.letters.filter(letter, )
     /*
-    let letterAccorianItems = this.props.letters.map(letter =>
+    let letterAccordionItems = this.props.letters.map(letter =>
     {
       
     });
