@@ -1,7 +1,7 @@
-//import axios from 'axios';
 import React from 'react';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
+import Score from './Score';
 
 // withAuth0, because this is a Class-based component
 // this allows us to use the `user` object in props
@@ -21,7 +21,8 @@ class Main extends React.Component {
       letter: {},
       letterBody: '',
       showModal: false,
-      modalId: ''
+      modalId: '',
+      score: {}
     }
   }
   getLetters = async () => {
@@ -295,6 +296,23 @@ class Main extends React.Component {
     }
   }
 
+    handleScore = async () => {
+      if(this.state.letter) {
+        let letterToScore = this.state.letter.letterBody || this.state.letterBody;
+        console.log(this.state.letter, ' ',  this.state.letterBody);
+        let URL = `${SERVER}/sentiment?text=${letterToScore}`;
+        console.log("letter to score", letterToScore);
+        let result = await axios.get(URL);
+        console.log(result);
+        let score = result.data;
+        console.log('Score ' ,score);
+        this.setState({
+          score: score,
+        })
+      }
+    }
+
+
   // letters will load as soon as this page is loaded
   // the page will only be loaded if they get through auth0
   componentDidMount() {
@@ -304,7 +322,6 @@ class Main extends React.Component {
 
     return (
       <>
-        <p>Proof of Life</p>
         <AddForm
           handleAddSubmit={this.handleAddSubmit}
           handleCharCount={this.handleCharCount}
@@ -316,6 +333,9 @@ class Main extends React.Component {
         {
           this.state.letters.length
             ? <>
+              <Score
+              handleScore={this.handleScore} 
+              score={this.state.score}/>
               <LetterAccordion
                 letters={this.state.letters}
                 handleModal={this.handleModal}
@@ -327,8 +347,12 @@ class Main extends React.Component {
                 confirmDelete={this.confirmDelete}
                 showEditForm={this.showEditForm}
               />
+
             </>
             : <p>Write your beloved a letter!</p>
+
+
+
         }
 
       </>
