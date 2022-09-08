@@ -7,7 +7,7 @@ class Header extends React.Component
   render()
   {
     return (
-      <p>Header Proof of Life</p>
+      <p>Lonely Beast!</p>
       // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       //   <Navbar.Brand>Lonely Beast: The Love Letter Helper</Navbar.Brand>
       //   <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
