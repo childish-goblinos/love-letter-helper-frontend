@@ -2,7 +2,7 @@
 
 ## Links
 
-[Love Letter Helper Page](https://love-letter-helper.netlify.app/)
+[Deployed Lonely Beast Site](https://love-letter-helper.netlify.app/)
 
 [Backend Server Repo](https://github.com/childish-goblinos/love-letter-helper-backend)
 
