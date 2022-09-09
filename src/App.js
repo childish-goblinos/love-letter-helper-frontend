@@ -30,30 +30,12 @@ import './App.css';
 
 
 class App extends React.Component
-{
+{ 
   render()
   {
     return (
       <>
-        {/* <Router>
-          <Header />
-          <Routes>
-            <Route
-              exact path="/"
-              element={<Main />}
-            >
-            </Route>
-            <Route
-              path="/about"
-              element={<About />}
-            >
-            </Route>
-          </Routes>
-          <Footer />
-        </Router> */}
-
-        {/* Original App testing routes  */ }
-
+       
         <Header />
 
         <Container className="App">

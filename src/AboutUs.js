@@ -1,7 +1,7 @@
 import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import { Button, Carousel } from 'react-bootstrap';
 
-class About extends React.Component
+class AboutUs extends React.Component
 {
   render()
   {
@@ -63,26 +63,10 @@ class About extends React.Component
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <Button onClick={() => this.props.handleAboutUs()}>Home Page</Button>
     </>
     )
   }
 };
 
-export default About;
-    // {/* <Nav
-    //   activeKey="/home"
-    //   onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-    // >
-    //   <Nav.Item>
-    //     <Nav.Link href="/">Active</Nav.Link>
-    //   </Nav.Item>
-    //   <Nav.Item>
-    //     <Nav.Link eventKey="link-1">Home</Nav.Link>
-    //   </Nav.Item>
-    //   <Nav.Item>
-    //     <Nav.Link eventKey="link-2">Link</Nav.Link>
-    //   </Nav.Item>
-    // </Nav>  */}
-    // {/* [ADD DEVELOPER STATEMENT, PORTFOLIO LINK IF DESIRED, LINKS TO GITHUB AND LINKED IN] */}
-    //  {/* [ADD LINKS TO GITHUB AND LINKED IN] */}
-    //  {/* [ADD DEVELOPER STATEMENT, PORTFOLIO LINK IF DESIRED, LINKS TO GITHUB AND LINKED IN] */}
+export default AboutUs;
