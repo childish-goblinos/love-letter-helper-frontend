@@ -2,7 +2,6 @@ import React from 'react';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 import Score from './Score';
-
 // withAuth0, because this is a Class-based component
 // this allows us to use the `user` object in props
 import { withAuth0 } from "@auth0/auth0-react";
@@ -10,6 +9,7 @@ import axios from 'axios';
 //import { Accordion } from 'react-bootstrap';
 import LetterAccordion from './LetterAccordion';
 import LetterModal from './LetterModal';
+import './Main.css';
 
 let SERVER = process.env.REACT_APP_SERVER;
 
@@ -296,21 +296,21 @@ class Main extends React.Component {
     }
   }
 
-    handleScore = async () => {
-      if(this.state.letter) {
-        let letterToScore = this.state.letter.letterBody || this.state.letterBody;
-        console.log(this.state.letter, ' ',  this.state.letterBody);
-        let URL = `${SERVER}/sentiment?text=${letterToScore}`;
-        console.log("letter to score", letterToScore);
-        let result = await axios.get(URL);
-        console.log(result);
-        let score = result.data;
-        console.log('Score ' ,score);
-        this.setState({
-          score: score,
-        })
-      }
+  handleScore = async () => {
+    if (this.state.letter) {
+      let letterToScore = this.state.letter.letterBody || this.state.letterBody;
+      console.log(this.state.letter, ' ', this.state.letterBody);
+      let URL = `${SERVER}/sentiment?text=${letterToScore}`;
+      console.log("letter to score", letterToScore);
+      let result = await axios.get(URL);
+      console.log(result);
+      let score = result.data;
+      console.log('Score ', score);
+      this.setState({
+        score: score,
+      })
     }
+  }
 
 
   // letters will load as soon as this page is loaded
@@ -334,8 +334,8 @@ class Main extends React.Component {
           this.state.letters.length
             ? <>
               <Score
-              handleScore={this.handleScore} 
-              score={this.state.score}/>
+                handleScore={this.handleScore}
+                score={this.state.score} />
               <LetterAccordion
                 letters={this.state.letters}
                 handleModal={this.handleModal}
@@ -350,11 +350,7 @@ class Main extends React.Component {
 
             </>
             : <p>Write your beloved a letter!</p>
-
-
-
         }
-
       </>
     );
   }

@@ -14,7 +14,6 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import Content from './Content';
 
-
 /*
 import {
   BrowserRouter as Router,
@@ -72,7 +71,7 @@ class App extends React.Component
                 <Content />
                 <Main />
               </>
-              : <h2>Please log in c:</h2>
+              : <></>
           }
         </Container>
 
