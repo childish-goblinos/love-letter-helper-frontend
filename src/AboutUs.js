@@ -6,12 +6,15 @@ class AboutUs extends React.Component
   render()
   {
     return (<>
-
-      <h1> This Application Brought To You By:</h1>
-      <Carousel>
+<p></p>
+<p></p>
+<h1> This Application Brought To You By:</h1>
+<div width="60%">
+       
+    <Carousel>
         <Carousel.Item>
           <img
-            className="d-block w-50"
+            className="d-block w-100"
             src={ require("./images/Gambino.jpg") }
             alt="Group shot"
           />
@@ -22,13 +25,13 @@ class AboutUs extends React.Component
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-"
+            className="d-block w-100"
             src={ require("./images/Amy-headshot.jpg") }
             alt="Amy"
           />
           <Carousel.Caption>
             <h3>Amy Pierce</h3>
-            <p>Amy is a software developer and recovering accountant. More about her exploits can be found at  </p>
+            <p>Amy is a software developer and recovering accountant. More about her exploits can be found at http://amydoescode.com...eventually.  </p>
 
           </Carousel.Caption>
         </Carousel.Item>
@@ -63,7 +66,8 @@ class AboutUs extends React.Component
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Button onClick={() => this.props.handleAboutUs()}>Home Page</Button>
+      <Button style={{width: "100px", margin: "auto"}}onClick={() => this.props.handleAboutUs()}>Home Page</Button>
+  </div>
     </>
     )
   }

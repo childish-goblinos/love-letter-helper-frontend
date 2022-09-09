@@ -22,6 +22,7 @@ class LetterAccordion extends React.Component {
 
     let newArr = arr.map((r, idx) => {
       return( 
+<>
         <Accordion.Item key={idx} eventKey={idx}>
           <Accordion.Header>{r}</Accordion.Header>
 
@@ -52,6 +53,7 @@ class LetterAccordion extends React.Component {
           })
         }
       </Accordion.Item>
+      </>
       );
     })
 
@@ -66,9 +68,12 @@ class LetterAccordion extends React.Component {
     //console.log('letter array in letter accordion: ', this.props.letters);
     return (
       <>
+      <p></p>
+       <h3> Your Saved Letters</h3>
         <Accordion>
           {newArr}
         </Accordion>
+      <p></p>
       </>
     )
   }
