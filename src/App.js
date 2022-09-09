@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Container from 'react-bootstrap/Container';
 
 // `withAuth0` is for `Class` components
@@ -39,6 +38,7 @@ class App extends React.Component
         <Header />
 
         <Container className="App">
+      
           { // if authenticated, see the `LogoutButton`
             // if not authenticated, see the `LoginButton`
             this.props.auth0.isAuthenticated

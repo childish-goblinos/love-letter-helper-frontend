@@ -3,11 +3,13 @@
 }
 
 .App {
+  font-family: 'Lobster', cursive;
   text-align: center;
   display:grid;
   /* grid-template-columns: 15% 25% 25% 25%;
   grid-template-rows: 15% 25% 25% 25%; */
 }
+
 .content{
   height:200px;
   /* grid-area: 1 1 2 2; */
