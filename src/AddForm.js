@@ -6,7 +6,6 @@ import { Button, Form } from 'react-bootstrap';
 class AddForm extends React.Component {
   render() {
     return (<>
-    <p>uhg</p>
        <Form onSubmit={this.props.handleAddSubmit}>
         <Form.Label >Your Recipient
           <Form.Control
