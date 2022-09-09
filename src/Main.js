@@ -180,10 +180,13 @@ class Main extends React.Component {
 
   // function to ask user if they `really want to delete?` their letter
   confirmDelete = (id) => {
-    let yesDelete = prompt(`${this.props.auth0.user.name}, Are you sure you want to delete this letter?`).toLowerCase();
+    let yesDelete = (prompt(`${this.props.auth0.user.name}, Are you sure you want to delete this letter?`) || 'no').toLowerCase(); 
 
     if (yesDelete === 'yes' || yesDelete === 'y') {
       this.deleteLetter(id);
+    }
+    else {
+      alert('Ok, continue lover.');
     }
   }
 
