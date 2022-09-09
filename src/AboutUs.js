@@ -8,10 +8,10 @@ class AboutUs extends React.Component
     return (<>
 <p></p>
 <p></p>
-<div class="carousel-item">
-    
-      <h1> This Application Brought To You By:</h1>
-      <Carousel>
+<h1> This Application Brought To You By:</h1>
+<div width="60%">
+       
+    <Carousel>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -25,13 +25,13 @@ class AboutUs extends React.Component
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-"
+            className="d-block w-100"
             src={ require("./images/Amy-headshot.jpg") }
             alt="Amy"
           />
           <Carousel.Caption>
             <h3>Amy Pierce</h3>
-            <p>Amy is a software developer and recovering accountant. More about her exploits can be found at http://amydoescode.com -  </p>
+            <p>Amy is a software developer and recovering accountant. More about her exploits can be found at http://amydoescode.com...eventually.  </p>
 
           </Carousel.Caption>
         </Carousel.Item>
