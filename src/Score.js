@@ -17,9 +17,6 @@ class Score extends React.Component
           <Button variant="primary" onClick={ () => this.props.handleScore() }>Get Score</Button>
         </Card.Body>
       </Card>
-
-
-
     )
   }
 }

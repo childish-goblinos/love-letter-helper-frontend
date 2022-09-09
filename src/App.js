@@ -35,7 +35,6 @@ class App extends React.Component
   {
     return (
       <>
-
         <Header />
 
         <Container className="App">
@@ -50,7 +49,8 @@ class App extends React.Component
           { // if authenticated, see the Content.js and Main.js
             // if not authenticated, see a message asking them to log in
             this.props.auth0.isAuthenticated
-              ? <>
+              ?
+              <>
                 <Content />
                 <Main />
               </>

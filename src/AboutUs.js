@@ -19,9 +19,13 @@ class AboutUs extends React.Component
               />
               <Carousel.Caption>
                 <h3>The Childish Goblinos</h3>
-                <p>The Childish Goblinos are the architects and instigators of the Lonely Beast application, and it's offshoots. We take all the credit and none of the blame for your results.</p>
+                <p>
+                  The Childish Goblinos are the architects and instigators of the Lonely Beast application, and it's offshoots. We take all the credit and none of the blame for your results.
+                </p>
               </Carousel.Caption>
             </Carousel.Item>
+
+
             <Carousel.Item>
               <img
                 className="d-block w-100"
@@ -30,10 +34,13 @@ class AboutUs extends React.Component
               />
               <Carousel.Caption>
                 <h3>Amy Pierce</h3>
-                <p>Amy is a software developer and recovering accountant. More about her exploits can be found at http://amydoescode.com...eventually.  </p>
-
+                <p>
+                  Amy is a software developer and recovering accountant. More about her exploits can be found at http://amydoescode.com...eventually.
+                </p>
               </Carousel.Caption>
             </Carousel.Item>
+
+
             <Carousel.Item>
               <img
                 className="d-block w-100"
@@ -65,7 +72,12 @@ class AboutUs extends React.Component
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
-          <Button style={ { width: "100px", margin: "auto" } } onClick={ () => this.props.handleAboutUs() }>Home Page</Button>
+          <Button
+            style={ { width: "100px", margin: "auto" } }
+            onClick={ () => this.props.handleAboutUs() }
+          >
+            Home Page
+          </Button>
         </div>
       </>
     )

@@ -16,20 +16,36 @@ class EditForm extends React.Component
           <Form.Label>Change Your Recipient</Form.Label>
           <Form.Control
             type="text"
-            defaultValue={ this.props.letter.recipient } />
+            defaultValue={ this.props.letter.recipient }
+          />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="title">
+        <Form.Group
+          className="mb-3"
+          controlId="title"
+        >
           <Form.Label>Edit Your Letter Title</Form.Label>
-          <Form.Control type="text" defaultValue={ this.props.letter.title } />
+          <Form.Control
+            type="text"
+            defaultValue={ this.props.letter.title }
+          />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="letterBody">
+        <Form.Group
+          className="mb-3"
+          controlId="letterBody"
+        >
           <Form.Label>Edit Your Letter (2000 Character Limit)</Form.Label>
-          <Form.Control as="textarea" rows={ 5 }
+          <Form.Control
+            as="textarea" rows={ 5 }
             defaultValue={ this.props.letter.letterBody }
-            maxLength={ 2000 } />
+            maxLength={ 2000 }
+          />
         </Form.Group>
         <Button type="submit">Save Changes</Button>
-        <Button onClick={ () => this.props.confirmDelete(this.props.letter?._id) }>Delete</Button>
+        <Button
+          onClick={ () => this.props.confirmDelete(this.props.letter?._id) }
+        >
+          Delete
+        </Button>
       </Form>
     )
   }
