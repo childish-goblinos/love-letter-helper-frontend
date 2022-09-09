@@ -3,7 +3,14 @@
 ## Links
 
 [Love Letter Helper Page](https://love-letter-helper.netlify.app/)
+
 [Backend Server Repo](https://github.com/childish-goblinos/love-letter-helper-backend)
+
+[Heroku Server](https://childish-goblino.herokuapp.com/letters)
+
+[Trello Board for this project](https://trello.com/b/mJsJb1sX/love-letter-helper)
+
+
 ## Authors
 
 Rhea Carillo, Amy Pierce, Jackson Gurney
@@ -19,7 +26,7 @@ This project offers would-be Romeos and Juliets a secure place to compose and st
 ![Compose A Letter](./project_prep/images/love-letter-compose.png?raw=true "Compose A Letter")
 ![View Saved and Edit Letters](./project_prep/images/love-letter-edit.png?raw=true "View Saved and Edit Letters")
 ![About Us](./project_prep/images/about-us.png?raw=true "About Us")
-[Trello Board for this project](https://trello.com/b/mJsJb1sX/love-letter-helper)
+
 
 ## User Stories
 
