@@ -1,9 +1,9 @@
 # Love Letter Helper
 
-## Deployed site
+## Links
 
 [Love Letter Helper Page](https://love-letter-helper.netlify.app/)
-
+[Backend Server Repo](https://github.com/childish-goblinos/love-letter-helper-backend)
 ## Authors
 
 Rhea Carillo, Amy Pierce, Jackson Gurney
