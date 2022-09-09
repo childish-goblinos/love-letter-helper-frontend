@@ -371,7 +371,7 @@ this.state.displayAboutUs?
 
      
         }
-        <Button onClick={() => this.handleAboutUs()}>Meet The Developers</Button>
+        <Button style={{width: "200px", margin: "auto"}}onClick={() => this.handleAboutUs()}>Meet The Developers</Button>
       </>
     );
   }

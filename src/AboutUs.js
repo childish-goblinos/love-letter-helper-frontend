@@ -66,7 +66,7 @@ class AboutUs extends React.Component
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Button onClick={() => this.props.handleAboutUs()}>Home Page</Button>
+      <Button style={{width: "100px", margin: "auto"}}onClick={() => this.props.handleAboutUs()}>Home Page</Button>
   </div>
     </>
     )
