@@ -7,9 +7,10 @@ import Score from './Score';
 // this allows us to use the `user` object in props
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
-//import { Accordion } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import LetterAccordion from './LetterAccordion';
 import LetterModal from './LetterModal';
+import AboutUs from './AboutUs';
 
 let SERVER = process.env.REACT_APP_SERVER;
 
@@ -22,8 +23,16 @@ class Main extends React.Component {
       letterBody: '',
       showModal: false,
       modalId: '',
-      score: {}
+      score: {},
+      displayEdit: false,
+      displayAboutUs: false,
     }
+  }
+
+  handleAboutUs = (id) => {
+    this.setState({
+      displayAboutUs: !this.state.displayAboutUs,
+    })
   }
   getLetters = async () => {
     // if the user is authenticated, they can get letters
@@ -321,15 +330,23 @@ class Main extends React.Component {
   render() {
 
     return (
-      <>
+this.state.displayAboutUs?
+      <AboutUs 
+      handleAboutUs={this.handleAboutUs}/>
+      :        
+    <>
+
+      { this.state.displayEdit?
+      <EditForm
+          letter={this.state.letter}
+          confirmDelete={this.confirmDelete}
+          handleEditSubmit={this.handleEditSubmit} />
+          :
         <AddForm
           handleAddSubmit={this.handleAddSubmit}
           handleCharCount={this.handleCharCount}
         />
-        <EditForm
-          letter={this.state.letter}
-          confirmDelete={this.confirmDelete}
-          handleEditSubmit={this.handleEditSubmit} />
+      }
         {
           this.state.letters.length
             ? <>
@@ -350,11 +367,9 @@ class Main extends React.Component {
 
             </>
             : <p>Write your beloved a letter!</p>
-
-
-
+     
         }
-
+        <Button onClick={() => this.handleAboutUs()}>Meet The Developers</Button>
       </>
     );
   }
