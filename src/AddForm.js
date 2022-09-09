@@ -5,10 +5,9 @@ import { Button, Form } from 'react-bootstrap';
 
 class AddForm extends React.Component {
   render() {
-    return (<>
-    <p></p>
-      <Form onSubmit={this.props.handleAddSubmit}>
-     <p></p>        
+    return (
+    <>
+      <Form onSubmit={this.props.handleAddSubmit}>      
       <Form.Group className="mb-3" controlId="addRecipient">
         <Form.Label>Choose a Recipient</Form.Label>
         <Form.Control type="text" placeholder="Oh My Most Beloved!" />
@@ -25,7 +24,6 @@ class AddForm extends React.Component {
         maxLength={2000}/>
       </Form.Group>
         <Button type="submit">Add A Letter</Button>
-        <p></p>
       </Form>
       </> 
       )

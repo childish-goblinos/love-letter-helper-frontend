@@ -4,23 +4,24 @@ import { Button, Modal } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LetterModal.css';
 
-export default class LetterModal extends React.Component {
-  render() {
-    let variable = this.props.letters.filter(r => r._id === this.props.modalId)[0];
+export default class LetterModal extends React.Component
+{
+  render()
+  {
+    let letter = this.props.letters.filter(r => r._id === this.props.modalId)[0];
     return (
-      <Modal className='modal' size="lg" show={this.props.show} onHide={this.props.handleModal}>
+      <Modal className='modal' size="lg" show={ this.props.show } onHide={ this.props.handleModal }>
         <Modal.Header closeButton>
-          <Modal.Title>{variable?.title}</Modal.Title>
+          <Modal.Title>{ letter?.title }</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{variable?.letterBody}</Modal.Body>
+        <Modal.Body>{ letter?.letterBody }</Modal.Body>
         <Modal.Footer className='footer'>
-          <Button variant="primary" onClick={() => this.props.showEditForm(variable)}>
+          <Button variant="primary" onClick={ () => this.props.showEditForm(letter) }>
             Edit
           </Button>
-          <Button variant="secondary" onClick={() => this.props.confirmDelete(variable?._id)}>
+          <Button variant="secondary" onClick={ () => this.props.confirmDelete(letter?._id) }>
             Delete
           </Button>
-
         </Modal.Footer>
       </Modal>
     )

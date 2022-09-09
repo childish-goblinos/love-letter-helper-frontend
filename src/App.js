@@ -30,16 +30,16 @@ import './App.css';
 
 
 class App extends React.Component
-{ 
+{
   render()
   {
     return (
       <>
-       
+
         <Header />
 
         <Container className="App">
-      
+
           { // if authenticated, see the `LogoutButton`
             // if not authenticated, see the `LoginButton`
             this.props.auth0.isAuthenticated
