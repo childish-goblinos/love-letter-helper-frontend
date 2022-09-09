@@ -6,6 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 class AddForm extends React.Component {
   render() {
     return (<>
+    <p></p>
       <Form onSubmit={this.props.handleAddSubmit}>
      <p></p>        
       <Form.Group className="mb-3" controlId="addRecipient">

@@ -56,7 +56,8 @@ class EditForm extends React.Component {
         defaultValue={this.props.letter.letterBody}
         maxLength={2000}/>
      </Form.Group>
-       <Button type="submit">Add A Letter</Button>
+     <Button type="submit">Save Changes</Button>
+      <Button onClick={() => this.props.confirmDelete(this.props.letter?._id)}>Delete</Button>
        <p></p>
      </Form>
     
